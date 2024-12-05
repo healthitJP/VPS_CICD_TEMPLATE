@@ -128,21 +128,21 @@ root/
    ```
 
 3. **Python 3.12のインストール**:
-   Python 3.12をインストールします。
+   Python 3.11をインストールします。
 
    ```sh
-   sudo apt install python3.12
+   sudo apt install python3.11
    ```
 
 4. **Pythonのデフォルトバージョンを変更（オプション）**:
    デフォルトのPythonバージョンを3.12に変更したい場合、`update-alternatives`を使って設定します。
 
    ```sh
-   sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
+   alias python3='/usr/bin/python3.11' 
    ```
 
 5. **バージョンを確認**:
-   Python 3.12が正しくインストールされているか確認します。
+   Python 3.11が正しくインストールされているか確認します。
 
    ```sh
    python3 --version
@@ -269,4 +269,11 @@ VPSの環境をセットアップするスクリプトを使用します。
 
 4. スクリプト実行後、表示される公開鍵をコピーし、GitHubのSSHキー設定に登録します。
 
+## トラブルシューティング
+### pip installがうまくいかない場合
+　 - インストールしなおす
+   ```bash
+   pip uninstall some_module
+   pip install some_module
+   ```
 
