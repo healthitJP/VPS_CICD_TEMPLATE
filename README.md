@@ -1,3 +1,4 @@
+# TODO デプロイ時のGitHub用のカギが公開鍵であるがsecretに保存するための秘密鍵をGithubにわたし、公開鍵は ~/.ssh/authorized_keysに保存する。
 # 概要と使い方
 
 ---
