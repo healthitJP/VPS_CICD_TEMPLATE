@@ -29,7 +29,8 @@ if [ ! -d "$APP_DIR" ]; then
     git clone $REPO_URL $APP_DIR
 else
     echo "=== ディレクトリが既に存在します: $APP_DIR ==="
-    exit 1
+    echo "リポジトリを更新します..."
+    cd $APP_DIR && git pull origin main
 fi
 
 # 仮想環境のセットアップ
