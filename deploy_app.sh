@@ -92,7 +92,7 @@ fi
 SERVICE_FILE="/etc/systemd/system/$APP_NAME.service"
 if [ ! -f "$SERVICE_FILE" ]; then
     echo "=== Systemdサービスを設定します ==="
-    sudo tee $SERVICE_FILE > /dev/null <<EOL
+sudo tee $SERVICE_FILE > /dev/null <<EOL
 [Unit]
 Description=$APP_NAME FastAPI Application
 After=network.target
