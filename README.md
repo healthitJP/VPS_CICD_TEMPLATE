@@ -167,13 +167,30 @@ Python 3.12を導入することで、新機能やパフォーマンスの向上
 
 
 1. **VPS初期設定**
+   - このリポジトリをクローンして ~ に中身を配置
+     ```bash
+     git clone https://github.com/healthitJP/VPS_CICD_TEMPLATE.git
+     cp ~/VPS_CICD_TEMPLATE/ init_vps.sh
+     cp ~/VPS_CICD_TEMPLATE/ deploy_app.sh
+     ```
+   - 権限を付与
+     ```bash
+     chmod +x init_vps.sh
+     chmod +x deploy_app.sh
+     ```
    - `init_vps.sh`を実行して、基本環境をセットアップ。
 
 2. **新しいアプリケーションのデプロイ**
    - `deploy_app.sh`を使用して、新しいアプリをデプロイ。
    - 例:
      ```bash
-     ./deploy_app.sh myapp git@github.com:your-username/my-repo.git myapp 8001
+     ./deploy_app.sh myapp git@github.com:your-username/my-repo.git myappsubdomain 8001
+     ```
+   - 初回の起動は自分で行います
+     ```bash
+     source /var/www/myapp/venv/bin/activate
+     cd /var/www/myapp
+     uvicorn main:app --host 0.0.0.0 --port 8001
      ```
 
 3. **GitHub Actions用SSH鍵の登録**
