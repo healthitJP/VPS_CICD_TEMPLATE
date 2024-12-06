@@ -79,11 +79,15 @@ echo "=== GitHub Actions用のSSH鍵を作成します ==="
 if [ ! -f "$SSH_KEY_PATH" ]; then
     mkdir -p "$HOME/.ssh"
     ssh-keygen -t ed25519 -C "github-actions@$DOMAIN_NAME" -f "$SSH_KEY_PATH" -N ""
-    echo "=== 公開鍵を以下に表示します。この鍵をGitHubに登録してください ==="
-    cat "${SSH_KEY_PATH}.pub"
+    echo "=== 公開鍵をauthorized_keysに追加します ==="
+    cat "${SSH_KEY_PATH}.pub" >> "$HOME/.ssh/authorized_keys"
+    echo "=== 秘密鍵を以下に表示します。この鍵をGitHubのシークレット（secrets.DEPLOY_KEY）に登録してください ==="
+    cat "${SSH_KEY_PATH}"
 
-    echo "=== 鍵の権限を設定します ==="
-    chmod 600 "$SSH_KEY_PATH"
+    echo "=== 権限を設定します ==="
+    chmod 600 "$SSH_KEY_PATH"           # 秘密鍵の権限を制限
+    chmod 600 "$HOME/.ssh/authorized_keys"      # authorized_keysの権限を制限
+    chmod 700 "$HOME/.ssh"                      # .sshディレクトリの権限を制限
 else
     echo "=== SSH鍵は既に存在します: $SSH_KEY_PATH ==="
 fi
